@@ -2,14 +2,20 @@
 import os
 from docopt import docopt
 import sys
-import re
+
+#from ppm import install, search
+from install import install
+from search import search
 
 doc = """Usage:
   ppm install
-  ppm install <package-name>
-  ppm search <package-name>
+  ppm install <package> [--global]
+  ppm search <package>
   ppm (-h | --help)
   ppm --version
+
+  Options:
+    --global    install packages global
 """
 
 def load_json_config():
@@ -18,19 +24,20 @@ def load_json_config():
 def load_txt_config():
     pass
 
-def install_package(package):
-    print('Installing %s' % package)
-    #call pip to install package
-
 def main(arguments):
     if arguments['install']:
-        if arguments['<package-name>']:
-            install_package(arguments['<package-name>'])
+        if arguments['<package>']:
+            install(arguments['<package>'])
         else:
             #find requirements.txt
             #find package.json
             #load dependence list
-            #call install_package for all deps
+            #call install for all deps
+            pass
+    elif arguments['search']:
+        if arguments['<package>']:
+            search(arguments['<package>'])
+
     return 1
 
 if __name__ == '__main__':

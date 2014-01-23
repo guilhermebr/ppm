@@ -38,4 +38,8 @@ nosetests.xml
 #virtualenv
 env
 
-
+# ppm internals
+python_modules
+ppm.log
+.Python
+*sublime-*
