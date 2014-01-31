@@ -4,7 +4,7 @@ from docopt import docopt
 import sys
 
 #from ppm import install, search
-from install import install
+from install import *
 from search import search
 
 doc = """Usage:
@@ -24,7 +24,8 @@ def load_json_config():
 def load_txt_config():
     pass
 
-def main(arguments):
+def main():
+    arguments = docopt(doc, version='Python Package Manager 0.1')
     if arguments['install']:
         if arguments['<package>']:
             install(arguments['<package>'])
@@ -41,8 +42,6 @@ def main(arguments):
     return 1
 
 if __name__ == '__main__':
-    arguments = docopt(doc, version='Python Package Manager 0.1')
-
-    ret = main(arguments)
+    ret = main()
     if ret:
         sys.exit(ret)
